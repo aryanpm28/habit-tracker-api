@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +37,13 @@ public class HabitController {
         return service.getAllHabits();
     }
 
+    @GetMapping("/{id}")
+    public HabitResponseDTO getHabitById(
+            @PathVariable Long id) {
+
+        return service.getHabitById(id);
+    }
+
     @PostMapping("/{id}/complete")
     public ResponseEntity<String> markComplete(@PathVariable Long id) {
         return ResponseEntity.ok(service.markCompleted(id));
@@ -59,5 +67,13 @@ public class HabitController {
     @DeleteMapping("/{id}")
     public String deleteHabit(@PathVariable Long id) {
         return service.deleteHabit(id);
+    }
+
+    @PutMapping("/{id}")
+    public HabitResponseDTO updateHabit(
+            @PathVariable Long id,
+            @Valid @RequestBody HabitDTO dto) {
+
+        return service.updateHabit(id, dto);
     }
 }

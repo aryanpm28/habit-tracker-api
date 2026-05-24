@@ -16,4 +16,8 @@ public class HabitResponseDTO {
     private int streak;
 
     private List<LogDTO> logs;
+
+    private String category;
+
+    private boolean reminderEnabled;
 }

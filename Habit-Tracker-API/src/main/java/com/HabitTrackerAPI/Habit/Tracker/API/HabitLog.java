@@ -2,6 +2,8 @@ package com.HabitTrackerAPI.Habit.Tracker.API;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,8 +21,10 @@ public class HabitLog {
     private Long id;
 
     private LocalDate date;
+
     private boolean completed;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "habit_id")
     private Habit habit;
